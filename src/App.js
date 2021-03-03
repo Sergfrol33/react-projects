@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import Buttons from "./components/Buttons/Buttons";
+import {Switch, Route} from "react-router-dom";
+import Weather from "./components/Weather/Weather";
+import AsideNavbar from "./components/AsideNavbar/AsideNavbar";
 
-function App() {
+const App = () => {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+        <AsideNavbar/>
+        <Switch>
+            <Route path='/buttons' render={() => <Buttons/>}/>
+            <Route exact path = '/weather' render={() => <Weather/>}/>
+            <Route path= '/' render={() =>  <Buttons/>}/>
+            <Route path='*'
+                   render={() => <div>404 NOT FOUND</div>}
+            />
+        </Switch>
+
     </div>
   );
 }
